@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Operations</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="text-center">Lab 3</h1>
+
+        <!--integer array-->
+        <div class="mb-4">
+            <h2>Integer Array</h2>
+            <div class="input-group mb-3">
+                <input type="text" id="integerInput" class="form-control" placeholder="Enter integers">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" id="sortInteger">Sort</button>
+                    <button class="btn btn-success" id="searchInteger">Search</button>
+                </div>
+            </div>
+            <div id="integerResult" class="alert"></div>
+        </div>
+
+        <!--string array-->
+        <div>
+            <h2>String Array</h2>
+            <div class="input-group mb-3">
+                <input type="text" id="entityInput" class="form-control" placeholder="Enter string array">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" id="sortEntities">Sort</button>
+                    <button class="btn btn-success" id="searchEntities">Search</button>
+                </div>
+            </div>
+            <div id="entityResult" class="alert"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+
+        $("#sortInteger").click(function () {
+            const input = $("#integerInput").val().split(",").map(Number);
+            input.sort((a, b) => a - b);
+            $("#integerResult").html("Sorted Array: " + input.join(", "));
+        });
+
+
+        $("#searchInteger").click(function () {
+            const input = $("#integerInput").val().split(",").map(Number);
+            const searchValue = parseInt(prompt("Enter the integer to search:"));
+            if (isNaN(searchValue)) {
+                $("#integerResult").html("Invalid search input.");
+            } else {
+                if (input.includes(searchValue)) {
+                    $("#integerResult").html(searchValue + " found in the array.");
+                } else {
+                    $("#integerResult").html(searchValue + " not found in the array.");
+                }
+            }
+        });
+
+
+        $("#sortEntities").click(function () {
+            const input = $("#entityInput").val().split(",");
+            input.sort();
+            $("#entityResult").html("Sorted Array: " + input.join(", "));
+        });
+
+
+        $("#searchEntities").click(function () {
+            const input = $("#entityInput").val().split(",");
+            const searchValue = prompt("Enter the named entity to search:");
+            if (input.includes(searchValue)) {
+                $("#entityResult").html(searchValue + " found in the array.");
+            } else {
+                $("#entityResult").html(searchValue + " not found in the array.");
+            }
+        });
+    </script>
+</body>
+</html>
